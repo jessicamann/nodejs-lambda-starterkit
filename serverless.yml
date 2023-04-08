@@ -1,10 +1,13 @@
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+useDotenv: true
+
 service: my-app
 provider:
   name: aws
   runtime: nodejs18.x
-
-plugins:
-  - serverless-offline
 
 functions:
   ping:

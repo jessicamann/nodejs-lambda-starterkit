@@ -1,12 +1,15 @@
-import { buildServer } from "./server";
+import { config } from "./config/config";
+import { buildServer } from "./server/server";
 
 const app = buildServer();
 
 if (require.main === module) {
   // starting node app directly
-  app.listen({ port: 3000 }, (err) => {
+  const port = config.port();
+
+  app.listen({ port }, (err) => {
     if (err) console.error(err);
-    console.log("server listening on 3000");
+    console.log(`server listening on ${port}`);
   });
 }
 

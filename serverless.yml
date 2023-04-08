@@ -1,0 +1,15 @@
+service: my-app
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  ping:
+    handler: dist/lambda.api
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY

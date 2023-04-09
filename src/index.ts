@@ -1,7 +1,7 @@
 import { config } from "./config/config";
 import { buildServer } from "./server/server";
 
-const app = buildServer();
+const app = buildServer({ logger: true });
 
 if (require.main === module) {
   // starting node app directly

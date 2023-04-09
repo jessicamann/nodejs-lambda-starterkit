@@ -1,4 +1,4 @@
-import { buildServer } from "./server";
+import { buildServer } from "../server";
 
 describe("GET /ping", () => {
   it("returns 200 and 'pong' when healthy", async () => {

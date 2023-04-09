@@ -1,5 +1,7 @@
-import fastify from "fastify";
+import fastifyAutoload from "@fastify/autoload";
 import fastifySensible from "@fastify/sensible";
+import fastify from "fastify";
+import path from "path";
 import { logger } from "../logger/logger";
 
 type ServerOptions = {
@@ -13,10 +15,12 @@ const buildServer = (options: ServerOptions = {}) => {
 
   const opt = { ...defaultOptions, ...options };
   const app = fastify(opt);
-  app.register(fastifySensible);
 
-  app.get("/ping", async (request, response) => {
-    response.code(200).send({ ping: "pong" });
+  app.register(fastifySensible);
+  app.register(fastifyAutoload, {
+    dir: path.join(__dirname, "routes"),
+    ignorePattern: /.*(test).ts/,
+    logLevel: "debug",
   });
 
   return app;

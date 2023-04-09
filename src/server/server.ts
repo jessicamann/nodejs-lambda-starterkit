@@ -1,5 +1,5 @@
 import fastify from "fastify";
-import { initializeLogger } from "../logger/logger";
+import { logger } from "../logger/logger";
 
 type ServerOptions = {
   logger?: boolean;
@@ -7,7 +7,7 @@ type ServerOptions = {
 
 const buildServer = (options: ServerOptions = {}) => {
   const defaultOptions = {
-    logger: options.logger && initializeLogger(),
+    logger: options.logger && logger(),
   };
 
   const opt = { ...defaultOptions, ...options };

@@ -1,8 +1,14 @@
+import { get } from "env-var";
+
 const config = {
-  port: () => parseInt(process.env["PORT"]!),
-  environment: () => process.env["ENVIRONMENT"],
-  logLevel: () => process.env["LOG_LEVEL"],
-  usePrettyLogger: () => (process.env["PRETTY_LOG"] === "yes" ? true : false),
+  port: () => get("PORT").required().asPortNumber(),
+  environment: () => get("ENVIRONMENT").asString(),
+  logLevel: () =>
+    get("LOG_LEVEL")
+      .default("info")
+      .example("Use one of: trace, debug, info, warn, error, fatal")
+      .asString(),
+  usePrettyLogger: () => get("PRETTY_LOG").default("false").asBool(),
 };
 
 export { config };

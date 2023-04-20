@@ -13,7 +13,7 @@ Included in the starter kit:
 App components in the starter kit:
 
 - logger
-- web server
+- web server (`fastify`) with `@fastify/autoload` for routes organization
 
 # Running the example
 

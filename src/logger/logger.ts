@@ -28,14 +28,8 @@ const defaultOptions: PinoLogOptions = {
   },
 };
 
-let _logger: Logger;
 const initializeLogger = (): Logger => {
-  _logger = pino(defaultOptions);
-  return _logger;
+  return pino(defaultOptions);
 };
 
-const logger = () => {
-  return _logger || initializeLogger();
-};
-
-export { logger };
+export { initializeLogger };

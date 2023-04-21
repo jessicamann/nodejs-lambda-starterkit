@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "lint": "prettier --check . && eslint . --ext .ts",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "generate:openapi": "node dist/docs.js"
   },
   "author": "",
   "license": "ISC",

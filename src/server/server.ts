@@ -1,7 +1,7 @@
 import fastifyAutoload from "@fastify/autoload";
 import fastifySensible from "@fastify/sensible";
 import fastifySwagger from "@fastify/swagger";
-import fastify from "fastify";
+import fastify, { FastifyInstance } from "fastify";
 import path from "path";
 import { initializeLogger } from "../logger/logger";
 
@@ -9,7 +9,7 @@ type ServerOptions = {
   logger?: boolean;
 };
 
-const buildServer = (options: ServerOptions = {}) => {
+const buildServer = (options: ServerOptions = {}): FastifyInstance => {
   const defaultOptions = {
     logger: options.logger && initializeLogger(),
   };

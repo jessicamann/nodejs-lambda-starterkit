@@ -146,3 +146,6 @@ dist
 # IDE
 .vscode/
 .idea/
+
+# Generated API spec
+docs/

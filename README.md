@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/jessicamann/nodejs-lambda-starterkit/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jessicamann/nodejs-lambda-starterkit/tree/main)
+
 # nodejs-lambda-starterkit
 
 A starter kit for serverside node application using fastify and lambda.

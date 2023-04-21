@@ -10,6 +10,6 @@ describe("POST /todo", () => {
     });
 
     expect(response.statusCode).toEqual(201);
-    expect(JSON.parse(response.body)).toEqual({ id: expect.any(String) });
+    expect(JSON.parse(response.body)).toEqual({ id: expect.any(Number) });
   });
 });

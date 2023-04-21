@@ -5,7 +5,9 @@ orbs:
 
 jobs:
   build_and_test:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: 18.16.0
     steps:
       - checkout
       - node/install-packages:
@@ -20,3 +22,8 @@ jobs:
           root: ~/project
           paths:
             - .
+
+workflows:
+  my-workflow:
+    jobs:
+      - build_and_test

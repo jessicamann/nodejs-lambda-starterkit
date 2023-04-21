@@ -1,9 +1,11 @@
 import { create, findByName } from "./noteStore";
-import { NewNote, Note } from "./types";
+import { DuplicateNoteError, NewNote, Note } from "./types";
 
 const addANote = (note: NewNote): Note => {
   if (findByName(note.name)) {
-    throw new Error(`Note with name "${note.name}" already taken.`);
+    throw new DuplicateNoteError(
+      `Note with name "${note.name}" already taken.`,
+    );
   }
 
   return create({

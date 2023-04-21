@@ -9,4 +9,6 @@ type Note = {
   content: string;
 };
 
-export { NewNote, Note };
+class DuplicateNoteError extends Error {}
+
+export { NewNote, Note, DuplicateNoteError };

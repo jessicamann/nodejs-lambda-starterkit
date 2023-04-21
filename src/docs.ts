@@ -5,7 +5,7 @@ const app = buildServer({ logger: false });
 
 (async () => {
   await app.ready();
-  const what = app.swagger();
-  fs.writeFileSync("./docs/spec.json", JSON.stringify(what));
+  const apiSpec = app.swagger();
+  fs.writeFileSync("./docs/spec.json", JSON.stringify(apiSpec));
   console.log("docs generated");
 })();

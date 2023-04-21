@@ -38,13 +38,60 @@ const toNotePresentation = (note: Note) => ({
 });
 
 export default async function (f: FastifyInstance) {
-  f.post("/todo", async (_: FastifyRequest, response: FastifyReply) => {
-    try {
-      const note = addANote({ name: "foo", content: "bar" });
-      response.code(201).send(toNotePresentation(note));
-    } catch (e) {
-      const error = toErrorResposne(e);
-      response.code(error.code).send(error.body);
-    }
-  });
+  f.post(
+    "/todo",
+    {
+      attachValidation: true,
+      schema: {
+        description: "Add a new note",
+        body: {
+          type: "object",
+          required: ["name", "content"],
+          properties: {
+            name: { type: "string" },
+            content: { type: "string" },
+          },
+        },
+        response: {
+          201: {
+            description: "Successfully added a new note",
+            type: "object",
+            properties: {
+              id: { type: "integer" },
+            },
+          },
+          400: {
+            description: "An issue occured with the input.",
+            type: "object",
+            properties: {
+              errors: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    message: { type: "string" },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    async (req: FastifyRequest, response: FastifyReply) => {
+      if (req.validationError) {
+        response
+          .code(400)
+          .send({ errors: [{ message: req.validationError.message }] });
+      }
+
+      try {
+        const note = addANote({ name: "foo", content: "bar" });
+        response.code(201).send(toNotePresentation(note));
+      } catch (e) {
+        const error = toErrorResposne(e);
+        response.code(error.code).send(error.body);
+      }
+    },
+  );
 }

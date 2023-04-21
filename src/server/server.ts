@@ -1,5 +1,6 @@
 import fastifyAutoload from "@fastify/autoload";
 import fastifySensible from "@fastify/sensible";
+import fastifySwagger from "@fastify/swagger";
 import fastify from "fastify";
 import path from "path";
 import { initializeLogger } from "../logger/logger";
@@ -17,6 +18,16 @@ const buildServer = (options: ServerOptions = {}) => {
   const app = fastify(opt);
 
   app.register(fastifySensible);
+  app.register(fastifySwagger, {
+    swagger: {
+      info: {
+        title: "nodejs-lambda-starterkit",
+        description: "Testing the Notes API",
+        version: "0.1.0",
+      },
+    },
+  });
+
   app.register(fastifyAutoload, {
     dir: path.join(__dirname, "routes"),
     ignorePattern: /.*(test).ts/,

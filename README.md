@@ -46,7 +46,6 @@ curl localhost:3000/ping
 # Todos
 
 - [ ] https://www.fastify.io/docs/latest/Guides/Ecosystem/
-- [ ] publish as a package | create a GH template
 - [ ] pipeline (github actions? circleci?)
 - [ ] improve logging
 - [ ] metrics / telemetry
@@ -57,3 +56,4 @@ curl localhost:3000/ping
 - [ ] authetication
 - [ ] graceful shutdown (do we need this for lambda?)
 - [ ] db connection
+- [ ] publish as a package | create a GH template

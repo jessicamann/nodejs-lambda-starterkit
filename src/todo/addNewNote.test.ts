@@ -23,3 +23,21 @@ describe("add a new note", () => {
     ).toThrowError('Note with name "foo" already taken.');
   });
 });
+
+describe("find existing notes by name", () => {
+  beforeEach(() => {
+    clearAllNotes();
+  });
+
+  it("returns the existing note", () => {
+    const note = addANote({ name: "foo", content: "my new note" });
+
+    expect(findByName("foo")).toEqual(note);
+  });
+
+  it("return undefined if no note with that name is found", () => {
+    addANote({ name: "foo", content: "my new note" });
+
+    expect(findByName("bar")).toBeUndefined();
+  });
+});

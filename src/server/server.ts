@@ -34,6 +34,15 @@ const buildServer = (options: ServerOptions = {}): FastifyInstance => {
     logLevel: "debug",
   });
 
+  app.addHook("preHandler", (req, res, next) => {
+    if (req.validationError) {
+      res
+        .code(400)
+        .send({ errors: [{ message: req.validationError.message }] });
+    }
+    next();
+  });
+
   return app;
 };
 

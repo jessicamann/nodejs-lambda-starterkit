@@ -78,13 +78,7 @@ export default async function (f: FastifyInstance) {
         },
       },
     },
-    async (req: FastifyRequest, response: FastifyReply) => {
-      if (req.validationError) {
-        response
-          .code(400)
-          .send({ errors: [{ message: req.validationError.message }] });
-      }
-
+    async (_: FastifyRequest, response: FastifyReply) => {
       try {
         const note = addANote({ name: "foo", content: "bar" });
         response.code(201).send(toNotePresentation(note));

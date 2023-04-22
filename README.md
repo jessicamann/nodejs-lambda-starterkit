@@ -84,13 +84,15 @@ Voila! Your coauthor has been added.
 # Todos
 
 - [ ] https://www.fastify.io/docs/latest/Guides/Ecosystem/
-- [ ] structured example (internal structure)
+- [ ] authetication
 - [ ] structured example (api test)
 - [ ] structured example (contract tests)
-- [ ] openapi
-- [ ] authetication
 - [ ] improve logging
 - [ ] metrics / telemetry
-- [ ] graceful shutdown (do we need this for lambda?)
+- [ ] graceful shutdown
 - [ ] db connection
 - [ ] publish as a package | create a GH template
+
+### lambda
+
+- [ ] dockerize?

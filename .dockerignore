@@ -13,6 +13,7 @@ npm-debug.log
 .prettierignore
 serverless.yml
 .husky
+scripts/
 
 # pipeline files
 .circleci

@@ -1,8 +1,12 @@
 .husky/
 .prettierignore
+.gitignore
+
+.nvmrc
 
 .env.example
 
-.gitignore
 .dockerignore
 Dockerfile
+
+scripts/devsetup.sh

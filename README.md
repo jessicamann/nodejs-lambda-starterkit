@@ -26,10 +26,7 @@ Docs components in the starter kit:
 Prepare your environment:
 
 ```bash
-cp .env.example .env
-npm ci
-npm build
-npm run prepare:dev
+./scripts/devsetup
 ```
 
 ```bash
@@ -61,25 +58,17 @@ cat docs/spec.json | pbcopy
 
 Head on over to the [swagger editor](https://editor-next.swagger.io/) and paste it in!
 
-# git-mob for adding your co-authors to the commit
+# git-mob for adding your pair(s) to commits
 
-This repository comes with a sample `.git-coauthors` file checked in. If you pair (or mob) frequently, [git-mob](https://www.npmjs.com/package/git-mob#add-co-author-from-github) makes it easy to append co-authors to your commit messages.
+If you pair (or mob) frequently, [git-mob](https://www.npmjs.com/package/git-mob#add-co-author-from-github) makes it easy to append co-authors to your commit messages.
 
-`git-mob` is a cli tool, so you'll need to install it globally:
+This repository comes with a sample `.git-coauthors` file checked in, and the `devsetup.sh` script copies over the file to where it needs to be.
 
-```bash
-npm i -g git-mob
+If you get a new teammate, don't forget to check them in and remind the team to update their co-authors file after they pull.
+
+```
 cp .git-coauthors ~/.git-coauthors
 ```
-
-Simply add your teammembers into the `.git-coauthors` file and use as such
-
-```bash
-git mob dg
-git commit
-```
-
-Voila! Your coauthor has been added.
 
 # Todos
 

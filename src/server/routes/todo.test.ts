@@ -2,6 +2,7 @@ import { buildServer } from "../server";
 import { addANote } from "../../todo/addNewNote";
 import { DuplicateNoteError } from "../../todo/types";
 
+jest.mock("../../config/config");
 jest.mock("../../todo/addNewNote", () => ({
   addANote: jest.fn(),
 }));
@@ -92,7 +93,7 @@ describe("POST /todo", () => {
     expect(JSON.parse(response.body)).toEqual({
       errors: [
         {
-          message: "Something went wrong.",
+          message: "Sorry, we screwed up.",
         },
       ],
     });

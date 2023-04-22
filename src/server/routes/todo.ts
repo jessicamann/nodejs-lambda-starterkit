@@ -1,33 +1,7 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { addANote } from "../../todo/addNewNote";
 import { DuplicateNoteError, Note } from "../../todo/types";
-
-type ErrorBody = {
-  errors: { message: string }[];
-};
-
-const errorMap: { [key: string]: { code: number; message: string } } = {
-  DuplicateNoteError: {
-    code: 400,
-    message: "A note with that name already exists. Please use a unique name.",
-  },
-};
-
-const toErrorBody = (...msg: string[]) => {
-  return { errors: msg.map((m) => ({ message: m })) };
-};
-
-const toErrorResposne = (e: any): { code: number; body: ErrorBody } => {
-  const errorDetails = errorMap[e.name];
-  if (errorDetails) {
-    return {
-      code: errorDetails.code,
-      body: toErrorBody(errorDetails.message),
-    };
-  }
-
-  throw e;
-};
+import { toErrorResponse } from "../infra/errorHandling";
 
 const toNotePresentation = (note: Note) => ({
   id: note.id,
@@ -79,8 +53,11 @@ export default async function (f: FastifyInstance) {
         const note = addANote({ name: "foo", content: "bar" });
         response.code(201).send(toNotePresentation(note));
       } catch (e) {
-        const { code, body } = toErrorResposne(e);
-        response.code(code).send(body);
+        if (e instanceof DuplicateNoteError) {
+          response.code(400).send(toErrorResponse(e));
+        } else {
+          throw e;
+        }
       }
     },
   );

@@ -3,6 +3,7 @@ import { get } from "env-var";
 const config = {
   port: () => get("PORT").required().asPortNumber(),
   environment: () => get("ENVIRONMENT").asString(),
+  appName: () => get("APP_NAME").required().asString(),
   logLevel: () =>
     get("LOG_LEVEL")
       .default("info")

@@ -57,6 +57,26 @@ Run the following command to generate the spec as json:
 npm run generate:openapi
 ```
 
+# git-mob for adding your co-authors to the commit
+
+This repository comes with a sample `.git-coauthors` file checked in. If you pair (or mob) frequently, git-mob makes it easy to append co-authors to your commit messages.
+
+`git-mob` is a cli tool, so you'll need to install it globally:
+
+```bash
+npm i -g git-mob
+cp .git-coauthors ~/.git-coauthors
+```
+
+Simply add your teammembers into the `.git-coauthors` file and use as such
+
+```bash
+git mob dg
+git commit
+```
+
+Voila! Your coauthor has been added.
+
 # Todos
 
 - [ ] https://www.fastify.io/docs/latest/Guides/Ecosystem/

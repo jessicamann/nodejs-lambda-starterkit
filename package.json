@@ -17,7 +17,15 @@
   "license": "ISC",
   "prettier": {
     "singleQuote": false,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": ".git-coauthors",
+        "options": {
+          "parser": "json"
+        }
+      }
+    ]
   },
   "jest": {
     "preset": "ts-jest",

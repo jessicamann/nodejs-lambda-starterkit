@@ -55,7 +55,10 @@ Run the following command to generate the spec as json:
 
 ```bash
 npm run generate:openapi
+cat docs/spec.json | pbcopy
 ```
+
+Head on over to the [swagger editor](https://editor-next.swagger.io/) and paste it in!
 
 # git-mob for adding your co-authors to the commit
 

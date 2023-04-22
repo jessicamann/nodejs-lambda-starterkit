@@ -6,6 +6,8 @@
     "lib": ["es2022"],
     "module": "commonjs",
     "target": "es2022",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
 
     "baseUrl": ".",
     "paths": {
@@ -18,7 +20,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "noImplicitAny": true
   },
 

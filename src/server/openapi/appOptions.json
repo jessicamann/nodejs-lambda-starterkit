@@ -1,0 +1,15 @@
+{
+  "openapi": {
+    "info": {
+      "title": "nodejs-lambda-starterkit API Docs",
+      "description": "sample OpenAPI 3x docs generated using @fastify/swagger",
+      "version": "0.1.0"
+    },
+    "tags": [
+      {
+        "name": "todo",
+        "description": "Manage your Todo list to stay organized"
+      }
+    ]
+  }
+}

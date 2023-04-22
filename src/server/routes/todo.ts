@@ -14,6 +14,7 @@ export default async function (f: FastifyInstance) {
       attachValidation: true,
       schema: {
         description: "Add a new note",
+        tags: ["todo"],
         body: {
           type: "object",
           required: ["name", "content"],
@@ -32,15 +33,10 @@ export default async function (f: FastifyInstance) {
           },
           400: {
             description: "An issue occured with the input.",
-            type: "object",
-            properties: {
-              errors: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    message: { type: "string" },
-                  },
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "error#",
                 },
               },
             },

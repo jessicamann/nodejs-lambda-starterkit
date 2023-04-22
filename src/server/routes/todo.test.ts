@@ -8,10 +8,6 @@ jest.mock("../../todo/addNewNote", () => ({
 }));
 
 describe("POST /todo", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("returns a 201 after successfully creating a new todo note", async () => {
     const server = buildServer({ logger: false });
     (addANote as jest.Mock).mockReturnValue({ id: 1 });
@@ -48,6 +44,7 @@ describe("POST /todo", () => {
     expect(JSON.parse(response.body)).toEqual({
       errors: [
         {
+          code: "LOCALTEST-001",
           message:
             "A note with that name already exists. Please use a unique name.",
         },

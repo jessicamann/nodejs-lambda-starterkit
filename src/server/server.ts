@@ -1,8 +1,11 @@
+import path from "path";
+import fastify, { FastifyInstance } from "fastify";
 import fastifyAutoload from "@fastify/autoload";
 import fastifySensible from "@fastify/sensible";
 import fastifySwagger from "@fastify/swagger";
-import fastify, { FastifyInstance } from "fastify";
-import path from "path";
+
+import openApiConfig from "./openapi/appOptions.json";
+import openApiSchemas from "./openapi/schemas.json";
 import { initializeLogger } from "../logger/logger";
 
 type ServerOptions = {
@@ -18,15 +21,8 @@ const buildServer = (options: ServerOptions = {}): FastifyInstance => {
   const app = fastify(opt);
 
   app.register(fastifySensible);
-  app.register(fastifySwagger, {
-    swagger: {
-      info: {
-        title: "nodejs-lambda-starterkit",
-        description: "Testing the Notes API",
-        version: "0.1.0",
-      },
-    },
-  });
+  app.register(fastifySwagger, openApiConfig);
+  openApiSchemas.forEach((s) => app.addSchema(s));
 
   app.register(fastifyAutoload, {
     dir: path.join(__dirname, "routes"),

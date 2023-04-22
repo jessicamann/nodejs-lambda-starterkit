@@ -8,7 +8,7 @@
     "clean": "rm -rf dist/",
     "start": "node -r dotenv/config dist/index.js",
     "start:asLambda": "serverless offline",
-    "prepare": "husky install",
+    "prepare:dev": "husky install",
     "lint": "prettier --check . && eslint . --ext .ts",
     "format": "prettier --write .",
     "test": "jest",

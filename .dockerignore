@@ -1,0 +1,18 @@
+# build artificat
+dist
+
+# dependencies on host machine
+node_modules
+
+# log files
+npm-debug.log
+
+# files used for local development only
+.env*
+.git-coauthors
+.prettierignore
+serverless.yml
+.husky
+
+# pipeline files
+.circleci

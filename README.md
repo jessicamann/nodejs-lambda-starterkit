@@ -27,8 +27,9 @@ Prepare your environment:
 
 ```bash
 cp .env.example .env
-npm install --frozen-lockfile
+npm ci
 npm build
+npm run prepare:dev
 ```
 
 ```bash

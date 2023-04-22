@@ -1,4 +1,8 @@
 .husky/
 .prettierignore
-.gitignore
+
 .env.example
+
+.gitignore
+.dockerignore
+Dockerfile

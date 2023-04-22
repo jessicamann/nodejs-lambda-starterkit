@@ -9,6 +9,11 @@ type Note = {
   content: string;
 };
 
-class DuplicateNoteError extends Error {}
+class DuplicateNoteError extends Error {
+  constructor(...args: any) {
+    super(args);
+    this.name = "DuplicateNoteError";
+  }
+}
 
 export { NewNote, Note, DuplicateNoteError };

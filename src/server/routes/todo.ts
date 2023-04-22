@@ -6,22 +6,27 @@ type ErrorBody = {
   errors: { message: string }[];
 };
 
-const toErrorResposne = (e: any): { code: number; body: ErrorBody } | Error => {
-  if (e instanceof DuplicateNoteError) {
+const errorMap: { [key: string]: { code: number; message: string } } = {
+  DuplicateNoteError: {
+    code: 400,
+    message: "A note with that name already exists. Please use a unique name.",
+  },
+};
+
+const toErrorBody = (...msg: string[]) => {
+  return { errors: msg.map((m) => ({ message: m })) };
+};
+
+const toErrorResposne = (e: any): { code: number; body: ErrorBody } => {
+  const errorDetails = errorMap[e.name];
+  if (errorDetails) {
     return {
-      code: 400,
-      body: {
-        errors: [
-          {
-            message:
-              "A note with that name already exists. Please use a unique name.",
-          },
-        ],
-      },
+      code: errorDetails.code,
+      body: toErrorBody(errorDetails.message),
     };
   }
 
-  return e;
+  throw e;
 };
 
 const toNotePresentation = (note: Note) => ({
@@ -74,11 +79,8 @@ export default async function (f: FastifyInstance) {
         const note = addANote({ name: "foo", content: "bar" });
         response.code(201).send(toNotePresentation(note));
       } catch (e) {
-        const error = toErrorResposne(e);
-        if (error instanceof Error) {
-          throw error;
-        }
-        response.code(error.code).send(error.body);
+        const { code, body } = toErrorResposne(e);
+        response.code(code).send(body);
       }
     },
   );

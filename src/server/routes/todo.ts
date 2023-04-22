@@ -6,7 +6,7 @@ type ErrorBody = {
   errors: { message: string }[];
 };
 
-const toErrorResposne = (e: any): { code: number; body: ErrorBody } => {
+const toErrorResposne = (e: any): { code: number; body: ErrorBody } | Error => {
   if (e instanceof DuplicateNoteError) {
     return {
       code: 400,
@@ -19,18 +19,9 @@ const toErrorResposne = (e: any): { code: number; body: ErrorBody } => {
         ],
       },
     };
-  } else {
-    return {
-      code: 500,
-      body: {
-        errors: [
-          {
-            message: "Something went wrong.",
-          },
-        ],
-      },
-    };
   }
+
+  return e;
 };
 
 const toNotePresentation = (note: Note) => ({
@@ -84,6 +75,9 @@ export default async function (f: FastifyInstance) {
         response.code(201).send(toNotePresentation(note));
       } catch (e) {
         const error = toErrorResposne(e);
+        if (error instanceof Error) {
+          throw error;
+        }
         response.code(error.code).send(error.body);
       }
     },

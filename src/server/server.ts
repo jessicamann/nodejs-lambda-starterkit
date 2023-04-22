@@ -43,6 +43,11 @@ const buildServer = (options: ServerOptions = {}): FastifyInstance => {
     next();
   });
 
+  app.setErrorHandler((err, req, res) => {
+    req.log.error("request erroring due to uncaught exception");
+    res.code(500).send({ errors: [{ message: "Something went wrong." }] });
+  });
+
   return app;
 };
 

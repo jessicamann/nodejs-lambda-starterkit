@@ -72,4 +72,29 @@ describe("POST /todo", () => {
       ],
     });
   });
+
+  it("returns a 500 if an unhandled error occurs", async () => {
+    const server = buildServer({ logger: false });
+    (addANote as jest.Mock).mockImplementationOnce(() => {
+      throw new Error("some unexpected error");
+    });
+
+    const response = await server.inject({
+      method: "POST",
+      url: "/todo",
+      payload: {
+        name: "foo",
+        content: "bar",
+      },
+    });
+
+    expect(response.statusCode).toEqual(500);
+    expect(JSON.parse(response.body)).toEqual({
+      errors: [
+        {
+          message: "Something went wrong.",
+        },
+      ],
+    });
+  });
 });

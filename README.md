@@ -59,7 +59,7 @@ npm run generate:openapi
 
 # git-mob for adding your co-authors to the commit
 
-This repository comes with a sample `.git-coauthors` file checked in. If you pair (or mob) frequently, git-mob makes it easy to append co-authors to your commit messages.
+This repository comes with a sample `.git-coauthors` file checked in. If you pair (or mob) frequently, [git-mob](https://www.npmjs.com/package/git-mob#add-co-author-from-github) makes it easy to append co-authors to your commit messages.
 
 `git-mob` is a cli tool, so you'll need to install it globally:
 

@@ -2,7 +2,7 @@ import { buildServer } from "../server";
 import { addANote } from "../../todo/addNewNote";
 import { DuplicateNoteError } from "../../todo/types";
 
-jest.mock("../../config/config");
+jest.mock("@config");
 jest.mock("../../todo/addNewNote", () => ({
   addANote: jest.fn(),
 }));

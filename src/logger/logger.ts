@@ -1,5 +1,5 @@
 import { pino, LoggerOptions as PinoLogOptions, Logger } from "pino";
-import { config } from "../config/config";
+import { config } from "@config";
 
 const localPrettyOutput = config.usePrettyLogger()
   ? {

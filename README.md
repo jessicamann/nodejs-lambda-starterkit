@@ -1,4 +1,5 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/jessicamann/nodejs-lambda-starterkit/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jessicamann/nodejs-lambda-starterkit/tree/main)
+[![CodeFactor](https://www.codefactor.io/repository/github/jessicamann/nodejs-lambda-starterkit/badge)](https://www.codefactor.io/repository/github/jessicamann/nodejs-lambda-starterkit)
 
 # nodejs-lambda-starterkit
 

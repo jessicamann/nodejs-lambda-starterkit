@@ -53,8 +53,10 @@ curl localhost:3000/ping
 Run the following command to generate the spec as json:
 
 ```bash
+mkdir -p docs
+npm run build
 npm run generate:openapi
-cat docs/spec.json | pbcopy
+pbcopy < docs/spec.json
 ```
 
 Head on over to the [swagger editor](https://editor-next.swagger.io/) and paste it in!
@@ -63,11 +65,11 @@ Head on over to the [swagger editor](https://editor-next.swagger.io/) and paste 
 
 If you pair (or mob) frequently, [git-mob](https://www.npmjs.com/package/git-mob#add-co-author-from-github) makes it easy to append co-authors to your commit messages.
 
-This repository comes with a sample `.git-coauthors` file checked in, and the `devsetup.sh` script copies over the file to where it needs to be.
+This repository comes with a sample [`.git-coauthors`](.git-coauthors) file checked in, and the [`devsetup.sh`](scripts/devsetup.sh) script copies over the file to where it needs to be.
 
 If you get a new teammate, don't forget to check them in and remind the team to update their co-authors file after they pull.
 
-```
+```sh
 cp .git-coauthors ~/.git-coauthors
 ```
 
@@ -82,6 +84,7 @@ cp .git-coauthors ~/.git-coauthors
 - [ ] graceful shutdown
 - [ ] db connection
 - [ ] publish as a package | create a GH template
+- [ ] [devbox](https://www.jetpack.io/devbox/docs/quickstart)
 
 ### lambda
 

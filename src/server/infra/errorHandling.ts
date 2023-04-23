@@ -1,4 +1,27 @@
+import { extendApi } from "@anatine/zod-openapi";
 import { config } from "@config";
+import { z } from "zod";
+
+const ErrorResponseSchema = extendApi(
+  z.object({
+    errors: z.array(
+      z.object({
+        code: extendApi(z.string(), {
+          description: "Unique application error code reference",
+          example: "TD-1",
+        }),
+        message: extendApi(z.string(), {
+          description: "Detail about the error",
+          example: "Required field missing in request: 'foo'",
+        }),
+      }),
+    ),
+  }),
+  {
+    title: "ErrorResponse",
+    description: "What went wrong with the request",
+  },
+);
 
 interface AppError {
   errorCode: string;
@@ -20,4 +43,4 @@ const toErrorResponse = (e: AppError): ErrorBody => {
   };
 };
 
-export { toErrorResponse, AppError };
+export { toErrorResponse, AppError, ErrorResponseSchema };

@@ -65,6 +65,7 @@ describe("POST /todo", () => {
     expect(JSON.parse(response.body)).toEqual({
       errors: [
         {
+          code: "LOCALTEST-V1",
           message: "body must have required property 'name'",
         },
       ],
@@ -90,6 +91,7 @@ describe("POST /todo", () => {
     expect(JSON.parse(response.body)).toEqual({
       errors: [
         {
+          code: "LOCALTEST-OPS1",
           message: "Sorry, we screwed up.",
         },
       ],

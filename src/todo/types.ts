@@ -1,15 +1,25 @@
+import { extendApi } from "@anatine/zod-openapi";
+import { z } from "zod";
 import { AppError } from "../server/infra/errorHandling";
 
-type NewNote = {
-  name: string;
-  content: string;
-};
+const NewNoteSchema = extendApi(
+  z.object({
+    name: extendApi(z.string().nonempty(), {
+      title: "Name of the task",
+      description: "What you need to do",
+    }),
+    content: extendApi(z.string(), {
+      title: "Detail for the task",
+      description: "Detailed information about the task",
+    }),
+  }),
+  { title: "Note", description: "Something to be done" },
+);
 
-type Note = {
-  id: number;
-  name: string;
-  content: string;
-};
+type NewNote = z.infer<typeof NewNoteSchema>;
+
+const NoteSchema = NewNoteSchema.merge(z.object({ id: z.number().positive() }));
+type Note = z.infer<typeof NoteSchema>;
 
 class DuplicateNoteError extends Error implements AppError {
   errorCode = "001";
@@ -21,4 +31,4 @@ class DuplicateNoteError extends Error implements AppError {
   }
 }
 
-export { NewNote, Note, DuplicateNoteError };
+export { NewNote, Note, NewNoteSchema, DuplicateNoteError };

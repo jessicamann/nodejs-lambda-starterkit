@@ -1,6 +1,7 @@
+import { generateSchema } from "@anatine/zod-openapi";
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { addANote } from "../../todo/addNewNote";
-import { DuplicateNoteError, Note } from "../../todo/types";
+import { DuplicateNoteError, NewNoteSchema, Note } from "../../todo/types";
 import { toErrorResponse } from "../infra/errorHandling";
 
 const toNotePresentation = (note: Note) => ({
@@ -15,14 +16,7 @@ export default async function (f: FastifyInstance) {
       schema: {
         description: "Add a new note",
         tags: ["todo"],
-        body: {
-          type: "object",
-          required: ["name", "content"],
-          properties: {
-            name: { type: "string" },
-            content: { type: "string" },
-          },
-        },
+        body: generateSchema(NewNoteSchema),
         response: {
           201: {
             description: "Successfully added a new note",

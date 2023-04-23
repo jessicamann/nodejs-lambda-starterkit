@@ -55,13 +55,16 @@
     "*.ts": "eslint --fix"
   },
   "dependencies": {
+    "@anatine/zod-openapi": "^1.12.1",
     "@fastify/autoload": "^5.7.1",
     "@fastify/aws-lambda": "^3.2.0",
     "@fastify/sensible": "^5.2.0",
     "@fastify/swagger": "^8.3.1",
     "env-var": "^7.3.0",
     "fastify": "^4.15.0",
-    "pino": "^8.11.0"
+    "openapi3-ts": "^4.1.1",
+    "pino": "^8.11.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

@@ -62,7 +62,6 @@
     "@fastify/swagger": "^8.3.1",
     "env-var": "^7.3.0",
     "fastify": "^4.15.0",
-    "openapi3-ts": "^4.1.1",
     "pino": "^8.11.0",
     "zod": "^3.21.4"
   },

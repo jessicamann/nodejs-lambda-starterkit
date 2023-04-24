@@ -1,10 +1,20 @@
-import { generateSchema } from "@anatine/zod-openapi";
+import { extendApi, generateSchema } from "@anatine/zod-openapi";
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { z } from "zod";
 import { addANote } from "../../todo/addNewNote";
 import { DuplicateNoteError, NewNoteSchema, Note } from "../../todo/types";
 import { toErrorResponse } from "../infra/errorHandling";
 
-const toNotePresentation = (note: Note) => ({
+const NumericIdResponseSchema = z.object({
+  id: extendApi(z.number(), {
+    title: "Identifier",
+    description: "Unique reference",
+    example: 81923890128,
+  }),
+});
+type NumericIdResponse = z.infer<typeof NumericIdResponseSchema>;
+
+const toNotePresentation = (note: Note): NumericIdResponse => ({
   id: note.id,
 });
 
@@ -20,10 +30,7 @@ export default async function (f: FastifyInstance) {
         response: {
           201: {
             description: "Successfully added a new note",
-            type: "object",
-            properties: {
-              id: { type: "integer" },
-            },
+            ...generateSchema(NumericIdResponseSchema),
           },
           400: {
             description: "An issue occured with the input.",

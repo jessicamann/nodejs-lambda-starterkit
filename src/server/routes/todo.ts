@@ -2,8 +2,7 @@ import { extendApi, generateSchema } from "@anatine/zod-openapi";
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { addANote } from "../../todo/addNewNote";
-import { DuplicateNoteError, NewNoteSchema, Note } from "../../todo/types";
-import { toErrorResponse } from "../infra/errorHandling";
+import { NewNoteSchema, Note } from "../../todo/types";
 
 const NumericIdResponseSchema = z.object({
   id: extendApi(z.number(), {

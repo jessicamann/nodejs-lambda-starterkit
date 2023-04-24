@@ -5,15 +5,22 @@ import { AppError } from "../server/infra/errorHandling";
 const NewNoteSchema = extendApi(
   z.object({
     name: extendApi(z.string().nonempty(), {
-      title: "Name of the task",
       description: "What you need to do",
     }),
     content: extendApi(z.string(), {
-      title: "Detail for the task",
       description: "Detailed information about the task",
     }),
   }),
-  { title: "Note", description: "Something to be done" },
+  {
+    title: "NewNote",
+    description: "Something to be done",
+    examples: [
+      {
+        name: "Schedule holidays",
+        content: "Add to work and personal calendar",
+      },
+    ],
+  },
 );
 
 type NewNote = z.infer<typeof NewNoteSchema>;

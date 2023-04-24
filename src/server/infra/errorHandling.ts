@@ -28,6 +28,10 @@ interface AppError {
   messageForConsumers: string;
 }
 
+function isAppError(sourceObj: any): sourceObj is AppError {
+  return "messageForConsumers" in sourceObj;
+}
+
 type ErrorBody = {
   errors: { code: string; message: string }[];
 };
@@ -43,4 +47,4 @@ const toErrorResponse = (e: AppError): ErrorBody => {
   };
 };
 
-export { toErrorResponse, AppError, ErrorResponseSchema };
+export { toErrorResponse, AppError, isAppError, ErrorResponseSchema };

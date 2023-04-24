@@ -46,16 +46,8 @@ export default async function (f: FastifyInstance) {
       },
     },
     async (_: FastifyRequest, response: FastifyReply) => {
-      try {
-        const note = addANote({ name: "foo", content: "bar" });
-        response.code(201).send(toNotePresentation(note));
-      } catch (e) {
-        if (e instanceof DuplicateNoteError) {
-          response.code(400).send(toErrorResponse(e));
-        } else {
-          throw e;
-        }
-      }
+      const note = addANote({ name: "foo", content: "bar" });
+      response.code(201).send(toNotePresentation(note));
     },
   );
 }

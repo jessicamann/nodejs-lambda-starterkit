@@ -9,6 +9,8 @@ import { commonSchemas } from "./openapi/schemas";
 import { initializeLogger } from "../logger/logger";
 import { config } from "@config";
 
+import { toErrorResponse, AppError, isAppError } from "./infra/errorHandling";
+
 type ServerOptions = {
   logger?: boolean;
 };
@@ -46,15 +48,20 @@ const buildServer = (options: ServerOptions = {}): FastifyInstance => {
   });
 
   app.setErrorHandler((err, req, res) => {
-    req.log.error(err);
-    res.code(500).send({
-      errors: [
-        {
-          code: `${config.appName()}-OPS1`,
-          message: "Sorry, we screwed up.",
-        },
-      ],
-    });
+    if (isAppError(err)) {
+      req.log.warn(err);
+      res.code(400).send(toErrorResponse(err as AppError));
+    } else {
+      req.log.error(err);
+      res.code(500).send({
+        errors: [
+          {
+            code: `${config.appName()}-OPS1`,
+            message: "Sorry, we screwed up.",
+          },
+        ],
+      });
+    }
   });
 
   return app;

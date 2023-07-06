@@ -23,6 +23,5 @@
     "noImplicitAny": true
   },
 
-  "include": ["src/**/*"],
-  "exclude": ["**/*.test.ts", "**/__mocks__/*"]
+  "include": ["src/**/*"]
 }
